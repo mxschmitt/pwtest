@@ -1,0 +1,26 @@
+name: Build
+
+on:
+  workflow_call:
+  workflow_dispatch:
+    branches: main
+
+jobs:
+  build:
+    runs-on: [self-hosted]
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Nuget restore
+      run: nuget restore SimpleTest.sln -Verbosity Detailed -NonInteractive -ConfigFile nuget.config
+    
+    - name: Add msbuild to path
+      uses: microsoft/setup-msbuild@v1.1
+
+    - name: Build solution
+      run: msbuild SimpleTest.sln /p:OutputPath=${{ github.workspace }}\_BuildScriptOutput /p:RestorePackages=false /p:GenerateProjectSpecificOutputFolder=true /p:OutDirWasSpecified=true
+    
+    - name: Run tests
+      shell: powershell
+      run: |
+        . "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe" (Get-ChildItem $currentDirectory -include *.dll -recurse | where {$_.name -match "SimpleTest.dll" -and $_.Directory -notMatch '.*\\obj\\.*'}).FullName

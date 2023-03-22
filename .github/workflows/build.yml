@@ -18,7 +18,7 @@ jobs:
       uses: microsoft/setup-msbuild@v1.1
 
     - name: Build solution
-      run: msbuild SimpleTest.sln /p:OutputPath=${{ github.workspace }}\_BuildScriptOutput /p:RestorePackages=false /p:GenerateProjectSpecificOutputFolder=true /p:OutDirWasSpecified=true
+      run: msbuild SimpleTest\SimpleTest.sln /p:OutputPath=${{ github.workspace }}\_BuildScriptOutput /p:RestorePackages=false /p:GenerateProjectSpecificOutputFolder=true /p:OutDirWasSpecified=true
     
     - name: Run tests
       shell: powershell

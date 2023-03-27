@@ -23,6 +23,6 @@ jobs:
     - name: Run tests
       shell: bash
       run: |
-        "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe" _BuildScriptOutput\SimpleTest\SimpleTest.dll
+        "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe" _BuildScriptOutput\\SimpleTest\\SimpleTest.dll
       env:
         DEBUG: pw:channel:command,pw:channel:event,pw:channel:response

@@ -21,7 +21,8 @@ jobs:
       run: msbuild SimpleTest\SimpleTest.sln /p:OutputPath=${{ github.workspace }}\_BuildScriptOutput /p:RestorePackages=false /p:GenerateProjectSpecificOutputFolder=true /p:OutDirWasSpecified=true
     
     - name: Run tests
-      shell: powershell
-      run: vstest.console.exe _BuildScriptOutput\SimpleTest\SimpleTest.dll
+      shell: bash
+      run: |
+        "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe" _BuildScriptOutput\SimpleTest\SimpleTest.dll
       env:
         DEBUG: pw:channel:command,pw:channel:event,pw:channel:response

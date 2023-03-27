@@ -22,7 +22,6 @@ jobs:
     
     - name: Run tests
       shell: powershell
-      run: |
-        . "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe" (Get-ChildItem $currentDirectory -include *.dll -recurse | where {$_.name -match "SimpleTest.dll" -and $_.Directory -notMatch '.*\\obj\\.*'}).FullName
+      run: vstest.console.exe _BuildScriptOutput\SimpleTest\SimpleTest.dll
       env:
         DEBUG: pw:channel:command,pw:channel:event,pw:channel:response

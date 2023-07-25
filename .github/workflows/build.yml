@@ -22,5 +22,4 @@ jobs:
     - name: Run tests
       shell: powershell
       run: |
-        chcp 437
         . "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe" (Get-ChildItem $currentDirectory -include *.dll -recurse | where {$_.name -match "SimpleTest.dll" -and $_.Directory -notMatch '.*\\obj\\.*'}).FullName
